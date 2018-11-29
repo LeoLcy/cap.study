@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  leo.cap.study:
+    image: ${DOCKER_REGISTRY}leocapstudy
+    build:
+      context: .
+      dockerfile: leo.cap.study\Dockerfile
