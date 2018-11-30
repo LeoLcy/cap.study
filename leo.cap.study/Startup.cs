@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using static leo.cap.study.Service.TestService;
 
 namespace leo.cap.study
 {
@@ -34,7 +35,7 @@ namespace leo.cap.study
                        b.MigrationsAssembly("leo.cap.study");
                    })
            );
-
+            services.AddTransient<ISubscriberService, SubscriberService>();
             services.AddCap(x =>
             {
                 //如果你使用的 EF 进行数据操作，你需要添加如下配置：

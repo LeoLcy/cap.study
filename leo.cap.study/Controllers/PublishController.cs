@@ -22,7 +22,7 @@ namespace leo.cap.study.Controllers
         public IActionResult WithoutTransaction(string msg="发送消息")
         {
             _capBus.Publish("xxx.services.show.time", msg);
-
+            _capBus.Publish("leo.services.showmsg", msg, "leo.services.callback");
             return Ok();
         }
 
@@ -62,6 +62,12 @@ namespace leo.cap.study.Controllers
         public void CheckReceivedMessage(string msg)
         {
             Console.WriteLine(DateTime.Now+":"+msg);
+        }
+
+        [CapSubscribe("leo.services.callback")]
+        public void ReceivedMessageCallback(string content)
+        {
+            Console.WriteLine(DateTime.Now + ":" + "回调"+ content);
         }
     }
 }
